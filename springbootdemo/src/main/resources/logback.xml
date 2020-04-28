@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="1 seconds">
+
+    <contextName>logback</contextName>
+<!--定义日志文件的存储地址 勿在LogBack的配置中使用相对路径-->
+    <property name="LOG_HOME" value="${catalina.base}/logs/}" />
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- <filter class="com.example.logback.filter.MyFilter" /> -->
+        <filter class="ch.qos.logback.classic.PatternLayout">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="file"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--文件的名字-->
+            <fileNamePattern>${LOG_HOME}/server.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!--保留日志的天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+
+        <!--<encoder>-->
+            <!--<pattern>%date %level [%thread] %logger{36} [%file : %line] %msg%n-->
+            <!--</pattern>-->
+        <!--</encoder>-->
+    </appender>
+<!--日志输出级别-->
+    <root level="debug">
+        <appender-ref ref="console" />
+        <appender-ref ref="file" />
+    </root>
+    <!-- name 属性表示匹配的logger类型前缀 -->
+    <!--<logger name="com.example.logback" >-->
+        <!--<level value="warn"/>-->
+        <!--&lt;!&ndash; 引用的appender，类似于spring的ref &ndash;&gt;-->
+        <!--&lt;!&ndash;<appender-ref ref="MONITOR" />&ndash;&gt;-->
+    <!--</logger>-->
+
+</configuration>
