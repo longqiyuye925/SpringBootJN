@@ -22,12 +22,18 @@ public class Users {
     @NotBlank(message = "{NotNull}")
     private String usersex;
 
+    private String account;
+
+    private String password;
+
     @Override
     public String toString() {
         return "Users{" +
                 "userid=" + userid +
                 ", username='" + username + '\'' +
                 ", usersex='" + usersex + '\'' +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 
@@ -53,5 +59,21 @@ public class Users {
 
     public void setUsersex(String usersex) {
         this.usersex = usersex;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
