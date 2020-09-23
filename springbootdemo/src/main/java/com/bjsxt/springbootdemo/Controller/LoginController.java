@@ -5,10 +5,15 @@ import com.bjsxt.springbootdemo.Service.TokenService;
 import com.bjsxt.springbootdemo.Service.UserService;
 import com.bjsxt.springbootdemo.model.LoginRequest;
 import com.bjsxt.springbootdemo.model.LoginResponse;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 /**
  * @Description: 登录token验证
@@ -49,6 +54,33 @@ public class LoginController {
         loginResponse.setTokenStr(token);
 
         return JSON.toJSONString(loginResponse);
+    }
+
+    @RequestMapping("/dologin")
+    public String dologin(String username, String password) {
+        Subject subject = SecurityUtils.getSubject();
+        System.out.println("username"+ username+"password" +password);
+        try {
+
+            subject.login(new UsernamePasswordToken(username, password));
+            System.out.println("登陆成功");
+            return "sucess";
+        } catch (AuthenticationException e) {
+            System.out.println("登陆失败");
+            return "fail";
+        }
+
+    }
+
+    @RequestMapping("/hello")
+    public String hello() {
+        System.out.println("进入hello");
+        return "hello";
+    }
+
+    @RequestMapping("/relogin")
+    public String login() {
+        return "please login!";
     }
 
 

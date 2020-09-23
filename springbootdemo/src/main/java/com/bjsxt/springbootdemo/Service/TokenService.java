@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * @Description:
+ * @Description:0
  * @author: wsc
  * @Param:
  * @Return:
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TokenService {
+
     @Autowired
     RedisUtil redisUtil;
 

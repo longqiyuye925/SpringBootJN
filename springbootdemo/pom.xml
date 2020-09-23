@@ -54,7 +54,11 @@
             <artifactId>jedis</artifactId>
             <version>3.3.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring-boot-web-starter</artifactId>
+            <version>1.6.0</version>
+        </dependency>
         <!--测试启动器-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
